@@ -4,7 +4,10 @@ const Countries=()=>{
  const [apidata,setapidata]=useState([]);
  useEffect(()=>{
     fetch('https://xcountries-backend.azurewebsites.net/all').then(response=>response.json()).then((data) =>setapidata(data))
-    .catch(error => console.error('Errorin fetching data', error));
+    .catch((error) => {
+        console.error("Error in fetching data:", error);
+        
+      });
 
  },[]);
  const Card = ({ key,name,flag }) => {
