@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 
 const Countries=()=>{
  const [apidata,setapidata]=useState([]);
+ const [errorMessage, setErrorMessage] = useState(null);
  useEffect(()=>{
     fetch('https://xcountries-backend.azurewebsites.net/all').then(response=>response.json()).then((data) =>setapidata(data))
     .catch((error) => {
         console.error("Error in fetching data:", error);
-        
+        setErrorMessage("Failed to load data. Please try again.");
       });
 
  },[]);
@@ -35,10 +36,13 @@ const Countries=()=>{
         
     },
   };
- return(<div style={{display:"flex",flexWrap:"wrap",gap:"10px"}}>
+ return(<div>
+    {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+ <div style={{display:"flex",flexWrap:"wrap",gap:"10px"}}>
     {apidata.map(({flag,name,abbr})=>(
         <Card key={abbr} name={name} flag={flag}/>
     ))}
+ </div>
  </div>);
 };
 
