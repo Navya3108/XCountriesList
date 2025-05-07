@@ -6,7 +6,7 @@ const Countries=()=>{
  useEffect(()=>{
     fetch('https://xcountries-backend.azurewebsites.net/all').then(response=>response.json()).then((data) =>setapidata(data))
     .catch((error) => {
-        console.error("Error in fetching data:", error);
+        console.error("/Error in fetching data:/", error);
         setErrorMessage("Failed to load data. Please try again.");
       });
 
