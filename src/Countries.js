@@ -6,8 +6,8 @@ const Countries=()=>{
  useEffect(()=>{
     fetch('https://xcountries-backend.azurewebsites.net/all').then(response=>response.json()).then((data) =>setapidata(data))
     .catch((error) => {
-        console.error("/Error in fetching data:/", error);
-        setErrorMessage("Failed to load data. Please try again.");
+        console.error("Error fetching data:", error);
+        
       });
 
  },[]);
@@ -36,14 +36,13 @@ const Countries=()=>{
         
     },
   };
- return(<div>
-    {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+ return(
  <div style={{display:"flex",flexWrap:"wrap",gap:"10px"}}>
     {apidata.map(({flag,name,abbr})=>(
         <Card key={abbr} name={name} flag={flag}/>
     ))}
  </div>
- </div>);
+ );
 };
 
 export default Countries;
